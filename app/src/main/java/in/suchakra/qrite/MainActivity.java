@@ -1,17 +1,30 @@
 package in.suchakra.qrite;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.ActionBar;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import tablayout.SlidingTabLayout;
 
-public class Information extends ActionBarActivity {
-
+public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_information);
+        setContentView(R.layout.activity_main);
+
+        // Get the ViewPager and set it's PagerAdapter so that it can display items
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setAdapter(new MainFragmentPageAdapter(getSupportFragmentManager(),
+                MainActivity.this));
+
+        // Give the SlidingTabLayout the ViewPager
+        SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+        // Center the tabs in the layout
+        slidingTabLayout.setDistributeEvenly(true);
+        slidingTabLayout.setViewPager(viewPager);
     }
 
 
