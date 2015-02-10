@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:backgroundTint="@color/background_floating_material_dark"
-    android:background="@color/background_floating_material_dark">
+    android:background="@color/background_material_dark">
 
     <in.suchakra.qrite.MyTextView
         android:id="@+id/txt"
@@ -24,7 +23,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:backgroundTint="@color/background_floating_material_dark"
-    android:background="@color/background_floating_material_dark">
+    android:background="@color/background_material_dark">
 
     <in.suchakra.qrite.MyTextView
         android:id="@+id/txt"
@@ -27,7 +26,8 @@
         android:layout_marginTop="10dp"
         android:hint="Phone"
         android:layout_alignLeft="@+id/nameText"
-        android:layout_alignStart="@+id/nameText" />
+        android:layout_alignStart="@+id/nameText"
+        android:textStyle="italic" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -41,7 +41,8 @@
         android:layout_alignEnd="@+id/phoneText"
         android:layout_alignLeft="@+id/nameText"
         android:layout_alignStart="@+id/nameText"
-        android:hint="E-mail" />
+        android:hint="E-mail"
+        android:textStyle="italic" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,15 +54,16 @@
         android:layout_below="@+id/txt"
         android:layout_alignLeft="@+id/txt"
         android:layout_alignStart="@+id/txt"
-        android:layout_alignRight="@+id/generateButton"
-        android:layout_alignEnd="@+id/generateButton"
-        android:layout_marginTop="15dp" />
+        android:layout_alignRight="@+id/nextButton"
+        android:layout_alignEnd="@+id/nextButton"
+        android:layout_marginTop="15dp"
+        android:textStyle="italic" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        android:id="@+id/generateButton"
+        android:id="@+id/nextButton"
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
