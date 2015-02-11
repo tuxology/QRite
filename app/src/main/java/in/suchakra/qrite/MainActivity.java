@@ -50,7 +50,6 @@ public class MainActivity extends ActionBarActivity {
                 return getResources().getColor(R.color.accent_material_dark);
             }
         });
-        
         slidingTabLayout.setViewPager(viewPager);
     }
 
