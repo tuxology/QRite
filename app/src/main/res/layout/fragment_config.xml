@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:fillViewport="true"
+    >
+    
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/background_material_dark">
 
     <in.suchakra.qrite.MyTextView
-        android:id="@+id/txt"
+        android:id="@+id/heading1Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="\uF0AD"
@@ -14,18 +21,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Generate"
-        android:id="@+id/generateButton"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="20dp"
-        android:layout_toEndOf="@+id/backButton"
-        android:layout_toRightOf="@+id/backButton" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,9 +30,9 @@
         android:id="@+id/heading1View"
         android:textStyle="bold"
         android:textColor="@color/accent_material_dark"
-        android:layout_alignBottom="@+id/txt"
-        android:layout_toRightOf="@+id/txt"
-        android:layout_toEndOf="@+id/txt"
+        android:layout_alignBottom="@+id/heading1Icon"
+        android:layout_toRightOf="@+id/heading1Icon"
+        android:layout_toEndOf="@+id/heading1Icon"
         android:layout_marginLeft="15dp" />
 
     <EditText
@@ -46,14 +41,11 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText"
-        android:layout_below="@+id/heading1View"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="15dp"
         android:hint="Width/Height"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_alignLeft="@+id/heading1Icon"
+        android:layout_alignStart="@+id/heading1Icon" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,13 +57,135 @@
         android:layout_toEndOf="@+id/editText"
         android:layout_marginLeft="10dp" />
 
-    <Button
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
-        android:id="@+id/backButton"
-        android:layout_alignBottom="@+id/generateButton"
+        android:orientation="vertical"
+        android:id="@+id/relativeLayout"
+        android:text="Wololo"
         android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_alignStart="@+id/editText"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/textView2">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:id="@+id/backButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate"
+            android:id="@+id/generateButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/backButton"
+            android:layout_toEndOf="@+id/backButton" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:columnCount="3"
+        android:rowCount="0"
+        android:id="@+id/relativeLayout2"
+        android:layout_below="@+id/heading1Icon"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"
+        android:layout_alignRight="@+id/relativeLayout"
+        android:layout_alignEnd="@+id/relativeLayout">
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card1"
+            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="4dp"
+            card_view:cardBackgroundColor = "@color/primary_dark_material_light"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:clickable="true">
+
+        <TextView
+            android:id="@+id/card1Text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="128px"
+            android:textColor="@color/background_material_dark"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textIsSelectable="true"
+            android:gravity="center_vertical|center_horizontal" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card2"
+            android:layout_gravity="center"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="4dp"
+            card_view:cardBackgroundColor = "@color/primary_dark_material_light"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/card1"
+            android:layout_toEndOf="@+id/card1"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true">
+        <TextView
+            android:id="@+id/card2Text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="240px"
+            android:textColor="@color/background_material_dark"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textIsSelectable="true"
+            android:gravity="center_vertical|center_horizontal" />
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card3"
+            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="4dp"
+            card_view:cardBackgroundColor = "@color/primary_dark_material_light"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/card2"
+            android:layout_toEndOf="@+id/card2"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:id="@+id/card3Text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="512px"
+                android:textColor="@color/background_material_dark"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:textIsSelectable="true"
+                android:gravity="center_vertical|center_horizontal" />
+        </android.support.v7.widget.CardView>
+
+        
+    </RelativeLayout>
+
 
 </RelativeLayout>
+</ScrollView>

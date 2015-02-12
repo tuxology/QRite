@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:fillViewport="true"
+    >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/background_material_dark">
+    
 
     <in.suchakra.qrite.MyTextView
-        android:id="@+id/txt"
+        android:id="@+id/heading1Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="\uF234"
         android:textSize="50dip"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp" />
+
+    <in.suchakra.qrite.MyTextView
+        android:id="@+id/heading2Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\uF044"
+        android:textSize="50dip"
+        android:layout_below="@+id/emailText"
+        android:layout_alignLeft="@+id/emailText"
+        android:layout_alignStart="@+id/emailText"
         android:layout_marginTop="15dp" />
         
     <EditText
@@ -51,21 +69,11 @@
         android:ems="10"
         android:id="@+id/nameText"
         android:hint="Name"
-        android:layout_below="@+id/txt"
-        android:layout_alignLeft="@+id/txt"
-        android:layout_alignStart="@+id/txt"
-        android:layout_alignRight="@+id/nextButton"
-        android:layout_alignEnd="@+id/nextButton"
+        android:layout_below="@+id/heading1Icon"
+        android:layout_alignLeft="@+id/heading1Icon"
+        android:layout_alignStart="@+id/heading1Icon"
         android:layout_marginTop="15dp"
-        android:textStyle="italic" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:id="@+id/nextButton"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentBottom="true"
+        android:textStyle="italic"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="20dp" />
@@ -80,8 +88,74 @@
         android:textColor="@color/accent_material_dark"
         android:layout_marginLeft="15dp"
         android:layout_marginStart="29dp"
-        android:layout_alignBottom="@+id/txt"
-        android:layout_toRightOf="@+id/txt"
-        android:layout_toEndOf="@+id/txt" />
+        android:layout_alignBottom="@+id/heading1Icon"
+        android:layout_toRightOf="@+id/heading1Icon"
+        android:layout_toEndOf="@+id/heading1Icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="..or"
+        android:id="@+id/orTextView"
+        android:textStyle="italic"
+        android:textColor="@color/bright_foreground_disabled_material_dark"
+        android:layout_alignBottom="@+id/heading2Icon"
+        android:layout_toRightOf="@+id/heading2Icon"
+        android:layout_toEndOf="@+id/heading2Icon"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Custom Text"
+        android:id="@+id/heading2View"
+        android:textStyle="bold"
+        android:textColor="@color/accent_material_dark"
+        android:layout_alignTop="@+id/orTextView"
+        android:layout_toRightOf="@+id/orTextView"
+        android:layout_toEndOf="@+id/orTextView"
+        android:layout_marginLeft="5dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:ems="10"
+        android:id="@+id/customText"
+        android:layout_below="@+id/heading2Icon"
+        android:layout_alignLeft="@+id/heading2Icon"
+        android:layout_alignStart="@+id/heading2Icon"
+        android:layout_alignRight="@+id/relativeLayout"
+        android:layout_alignEnd="@+id/relativeLayout"
+        android:layout_marginTop="15dp"
+        android:textStyle="italic"
+        android:hint="Type Here" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/relativeLayout"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/customText">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:id="@+id/nextButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
+</ScrollView>

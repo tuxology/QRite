@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -29,6 +30,10 @@ public class MainActivity extends ActionBarActivity {
             setSupportActionBar(toolbar);
         }
         
+        // Do not show the keyboard by default
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        
+        // Set toolbar UI
         toolbar.setLogo(R.drawable.toolbar_icon);
         toolbar.setTitleTextAppearance(getApplicationContext(), Typeface.BOLD);
         toolbar.setBackgroundColor(getResources().getColor(R.color.accent_material_light));
