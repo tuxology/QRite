@@ -2,6 +2,7 @@ package in.suchakra.qrite;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,7 +88,19 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                 vPager.setCurrentItem(0); // return to INFO tab
                 break;
             case R.id.generateButton:
-                Toast.makeText(this.getActivity(),"Generate is clicked!", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(getActivity(), QrCodeActivity.class);
+                myIntent.putExtra("name", (String) (((EditText) 
+                        getActivity().findViewById(R.id.nameText)).getText().toString()) );
+                myIntent.putExtra("phone", (String) (((EditText) 
+                        getActivity().findViewById(R.id.phoneText)).getText().toString()) );
+                myIntent.putExtra("email", (String) (((EditText) 
+                        getActivity().findViewById(R.id.emailText)).getText().toString()) );
+                myIntent.putExtra("custom", (String) (((EditText) 
+                        getActivity().findViewById(R.id.customText)).getText().toString()) );
+                myIntent.putExtra("size", (String) (((EditText)
+                        getActivity().findViewById(R.id.sizeText)).getText().toString()) );
+
+                startActivity(myIntent);
                 break;
         }
     }
