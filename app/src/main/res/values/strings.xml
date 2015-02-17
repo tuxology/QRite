@@ -2,8 +2,7 @@
 <resources>
 
     <string name="app_name">QRite</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_qr_code">QrCodeActivity</string>
+    <string name="title_activity_qr_code">QRite</string>
 
 </resources>
