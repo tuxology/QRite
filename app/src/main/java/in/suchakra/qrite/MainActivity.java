@@ -15,7 +15,8 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.Arrays;
 
 import tablayout.SlidingTabLayout;
 
@@ -25,6 +26,7 @@ public class MainActivity extends ActionBarActivity {
     public static BitmapDrawable logoSmall;
     public static BitmapDrawable iconRecent;
     public static final String RECENT_PREFS = "RecentPrefsFile";
+    private int loop = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,10 +123,29 @@ public class MainActivity extends ActionBarActivity {
         // TODO Do proper submenus
         SubMenu submenu = menu.getItem(0).getSubMenu();
         submenu.clear();
-        submenu.add("One").setIcon(logoSmall);
-        submenu.add("Two").setIcon(logoSmall);
-        submenu.add("Three").setIcon(logoSmall);
-
+        String [] names = new String[5];
+        String [] phones = new String[5];
+        String [] emails = new String[5];
+        String [] custom = new String[5];
+        // For testing!!
+        SharedPreferences prefs = getSharedPreferences(RECENT_PREFS, Context.MODE_PRIVATE);
+        String restoredText = prefs.getString("text", null);
+        int cnt = prefs.getInt("count", 0);
+        int reachedMax = prefs.getInt("max", 0);
+        if (reachedMax == 1){
+            cnt = 4;
+        }
+        if (restoredText != null) {
+            for (int i=0; i<=cnt; i++){
+                if (i!=0)
+                names[i] = prefs.getString("name"+i, null);
+                phones[i] = prefs.getString("phone"+i, null);
+                emails[i] = prefs.getString("email"+i, null);
+                custom[i] = prefs.getString("custom"+i, null);
+                submenu.add(names[i]).setIcon(logoSmall);
+            }
+        }
+        System.out.println("RECENT DETAILS : " + Arrays.toString(names));
         return true;
     }
 
@@ -141,22 +162,11 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         */
-        
+        /*
         if (id == R.id.recent){
-            // For testing!!
-            SharedPreferences prefs = getSharedPreferences(RECENT_PREFS, Context.MODE_PRIVATE);
-            String restoredText = prefs.getString("text", null);
-            if (restoredText != null) {
-                String nm = prefs.getString("name", null);
-                String ph = prefs.getString("phone", null);
-                String em = prefs.getString("email", null);
-                String cs = prefs.getString("custom", null);
-                Toast.makeText(getApplicationContext(), nm + ph + em + cs,
-                        Toast.LENGTH_SHORT).show();
-            }
             return true;
         }
-
+        */
         return super.onOptionsItemSelected(item);
     }
 }

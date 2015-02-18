@@ -110,13 +110,29 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
         smartwatchButton.setOnClickListener(this);
 
         // Save the value for recent data
-        SharedPreferences.Editor editor = getSharedPreferences(RECENT_PREFS, MODE_PRIVATE).edit();
+        SharedPreferences prefs = getSharedPreferences(RECENT_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        int cnt = prefs.getInt("count", 42);
+        if (cnt == 42){ // first run
+            System.out.println("First run");
+            cnt = 0;
+        }
+        else if (cnt < 4){ // 4 is max people on list
+            cnt+=1;
+        }
+        else if (cnt >= 4){ //reset count when max people on list reached
+            cnt = 0;
+        }
+        if (cnt == 4){
+            editor.putInt("max", 1);
+        }
+        editor.putInt("count", cnt);
         editor.putString("text", "wololo");
-        editor.putString("name", name);
-        editor.putString("phone", phone);
-        editor.putString("email", email);
-        editor.putString("custom", custom);
-        editor.putString("size", size);
+        editor.putString("name"+cnt, name);
+        editor.putString("phone"+cnt, phone);
+        editor.putString("email"+cnt, email);
+        editor.putString("custom"+cnt, custom);
+        editor.putString("size"+cnt, size);
         editor.commit();
     }
     
