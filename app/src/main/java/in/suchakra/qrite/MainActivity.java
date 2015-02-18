@@ -137,7 +137,6 @@ public class MainActivity extends ActionBarActivity {
         }
         if (restoredText != null) {
             for (int i=0; i<=cnt; i++){
-                if (i!=0)
                 names[i] = prefs.getString("name"+i, null);
                 phones[i] = prefs.getString("phone"+i, null);
                 emails[i] = prefs.getString("email"+i, null);
