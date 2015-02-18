@@ -8,12 +8,14 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -26,7 +28,10 @@ public class MainActivity extends ActionBarActivity {
     public static BitmapDrawable logoSmall;
     public static BitmapDrawable iconRecent;
     public static final String RECENT_PREFS = "RecentPrefsFile";
-    private int loop = 0;
+    String [] names = new String[5];
+    String [] phones = new String[5];
+    String [] emails = new String[5];
+    String [] custom = new String[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,30 +128,32 @@ public class MainActivity extends ActionBarActivity {
         // TODO Do proper submenus
         SubMenu submenu = menu.getItem(0).getSubMenu();
         submenu.clear();
-        String [] names = new String[5];
-        String [] phones = new String[5];
-        String [] emails = new String[5];
-        String [] custom = new String[5];
+
         // For testing!!
         SharedPreferences prefs = getSharedPreferences(RECENT_PREFS, Context.MODE_PRIVATE);
-        String restoredText = prefs.getString("text", null);
         int cnt = prefs.getInt("count", 0);
         int reachedMax = prefs.getInt("max", 0);
+
         if (reachedMax == 1){
             cnt = 4;
         }
-        if (restoredText != null) {
-            for (int i=0; i<=cnt; i++){
-                names[i] = prefs.getString("name"+i, null);
-                phones[i] = prefs.getString("phone"+i, null);
-                emails[i] = prefs.getString("email"+i, null);
-                custom[i] = prefs.getString("custom"+i, null);
-                submenu.add(names[i]).setIcon(logoSmall);
+
+        for (int i=0; i<=cnt; i++) {
+            names[i] = prefs.getString("name" + i, null);
+            phones[i] = prefs.getString("phone" + i, null);
+            emails[i] = prefs.getString("email" + i, null);
+            custom[i] = prefs.getString("custom" + i, null);
+            if (custom[i].isEmpty()) {
+                submenu.add(0, i, Menu.NONE, names[i]).setIcon(logoSmall);
+            }
+            else {
+                submenu.add(0, i, Menu.NONE, custom[i]).setIcon(logoSmall);
             }
         }
-        System.out.println("RECENT DETAILS : " + Arrays.toString(names));
         return true;
     }
+    
+    
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -154,18 +161,39 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        /*
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        
+        switch (id){
+            case 0:
+                populateText(id);
+                return true;
+            case 1:
+                populateText(id);
+                return true;
+            case 2:
+                populateText(id);
+                return true;
+            case 3:
+                populateText(id);
+                return true;
+            case 4:
+                populateText(id);
+                return true;
         }
-        */
-        /*
-        if (id == R.id.recent){
-            return true;
-        }
-        */
         return super.onOptionsItemSelected(item);
+    }
+    
+    public void populateText(int id){
+        if (custom[id].isEmpty()){
+            EditText name = (EditText) findViewById(R.id.nameText);
+            name.setText(names[id]);
+            EditText phone = (EditText) findViewById(R.id.phoneText);
+            phone.setText(phones[id]);
+            EditText email = (EditText) findViewById(R.id.emailText);
+            email.setText(emails[id]);
+        }
+        else {
+            EditText cstm = (EditText) findViewById(R.id.customText);
+            cstm.setText(custom[id]);
+        }
     }
 }

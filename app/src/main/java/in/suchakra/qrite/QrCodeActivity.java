@@ -127,7 +127,6 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
             editor.putInt("max", 1);
         }
         editor.putInt("count", cnt);
-        editor.putString("text", "wololo");
         editor.putString("name"+cnt, name);
         editor.putString("phone"+cnt, phone);
         editor.putString("email"+cnt, email);
