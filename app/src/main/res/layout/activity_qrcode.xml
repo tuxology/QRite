@@ -35,7 +35,7 @@
                 android:layout_height="250dp"
                 card_view:cardCornerRadius="4dp"
                 card_view:cardElevation="4dp"
-                card_view:cardBackgroundColor = "@color/primary_dark_material_light"
+                card_view:cardBackgroundColor = "#ffffff"
                 android:layout_alignParentTop="true"
                 android:layout_margin="15dp"
                 android:clickable="true"
@@ -49,11 +49,31 @@
                     android:src="@drawable/toolbar_icon" />
                 
                 </android.support.v7.widget.CardView>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send to Smartwatch"
+                android:id="@+id/smartwatchButton"
+                android:layout_below="@+id/saveButton"
+                android:gravity="center"
+                android:layout_alignLeft="@+id/saveButton"
+                android:layout_alignStart="@+id/saveButton"
+                android:layout_alignRight="@+id/saveButton"
+                android:layout_alignEnd="@+id/saveButton" />
 
-
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save to gallery"
+                android:id="@+id/saveButton"
+                android:gravity="center"
+                android:layout_below="@+id/card3"
+                android:layout_alignLeft="@+id/card3"
+                android:layout_alignStart="@+id/card3"
+                android:layout_alignRight="@+id/card3"
+                android:layout_alignEnd="@+id/card3" />
+            
         </RelativeLayout>
-
     </ScrollView>
 
 </LinearLayout>
