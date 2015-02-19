@@ -53,11 +53,6 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             mNextbutton.setText("Next  "+"\uF0A9");            
             mNextbutton.setOnClickListener(this);
             
-            /*
-            TextView mHeaderTextView = (TextView) info_view.findViewById(R.id.heading1View);
-            mHeaderTextView.setText("Enter Your Details");
-            */
-            
             return info_view;
         }
         if (mPage == 2){

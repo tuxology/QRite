@@ -2,12 +2,11 @@ package in.suchakra.qrite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
@@ -15,7 +14,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -23,7 +21,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
@@ -50,6 +47,10 @@ import java.util.Random;
 public class QrCodeActivity extends ActionBarActivity implements View.OnClickListener {
     
     public static final String RECENT_PREFS = "RecentPrefsFile";
+    String [] names = new String[5];
+    String [] phones = new String[5];
+    String [] emails = new String[5];
+    String [] custom = new String[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +115,6 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
         SharedPreferences.Editor editor = prefs.edit();
         int cnt = prefs.getInt("count", 42);
         if (cnt == 42){ // first run
-            System.out.println("First run");
             cnt = 0;
         }
         else if (cnt < 4){ // 4 is max people on list
@@ -127,6 +127,7 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
             editor.putInt("max", 1);
         }
         editor.putInt("count", cnt);
+        editor.putString("data", "is written");
         editor.putString("name"+cnt, name);
         editor.putString("phone"+cnt, phone);
         editor.putString("email"+cnt, email);
@@ -241,14 +242,12 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_qrcode, menu);
         // Add "recent QR codes" item
-        menu.getItem(0).setIcon(MainActivity.iconRecent);
+        menu.getItem(0).setIcon(MainActivity.iconCustomize);
         
-        // TODO Do proper submenus
         SubMenu submenu = menu.getItem(0).getSubMenu();
         submenu.clear();
-        submenu.add("One").setIcon(MainActivity.logoSmall);
-        submenu.add("Two").setIcon(MainActivity.logoSmall);
-        submenu.add("Three").setIcon(MainActivity.logoSmall);
+        submenu.add(0, 1, Menu.NONE, "Colors").setIcon(MainActivity.iconColour);
+        submenu.add(0, 2, Menu.NONE, "Size").setIcon(MainActivity.iconSize);
         return true;
     }
 
@@ -259,12 +258,6 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        /*
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        */
         if (id == R.id.home){
             NavUtils.navigateUpFromSameTask(this);
             return true;
@@ -272,4 +265,5 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
 
         return super.onOptionsItemSelected(item);
     }
+
 }

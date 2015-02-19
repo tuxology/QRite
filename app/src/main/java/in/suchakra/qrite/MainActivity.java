@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,8 +17,6 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.Arrays;
-
 import tablayout.SlidingTabLayout;
 
 public class MainActivity extends ActionBarActivity {
@@ -27,12 +24,18 @@ public class MainActivity extends ActionBarActivity {
     public static BitmapDrawable logoToolbar;
     public static BitmapDrawable logoSmall;
     public static BitmapDrawable iconRecent;
+    public static BitmapDrawable iconLink;
+    public static BitmapDrawable iconUser;
+    public static BitmapDrawable iconCustomize;
+    public static BitmapDrawable iconColour;
+    public static BitmapDrawable iconSize;
+
     public static final String RECENT_PREFS = "RecentPrefsFile";
     String [] names = new String[5];
     String [] phones = new String[5];
     String [] emails = new String[5];
     String [] custom = new String[5];
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +74,27 @@ public class MainActivity extends ActionBarActivity {
             }
         });
         slidingTabLayout.setViewPager(viewPager);
-        
-        
+
+        EditText mName = (EditText) findViewById(R.id.nameText);
+        EditText mPhone = (EditText) findViewById(R.id.phoneText);
+        EditText mEmail = (EditText) findViewById(R.id.emailText);
+        EditText mCstm = (EditText) findViewById(R.id.customText);
+//        if (sCustom == null){
+//            mCstm.setText("");
+//            mName.setText("");
+//            mName.setText(sName);
+//            mPhone.setText("");
+//            mPhone.setText(sPhone);
+//            mEmail.setText("");
+//            mEmail.setText(sEmail);
+//        }
+//        else {
+//            mCstm.setText("");
+//            mName.setText("");
+//            mPhone.setText("");
+//            mEmail.setText("");
+//            mCstm.setText(sCustom);
+//        }
     }
     
     public void initializeDrawables(){
@@ -114,6 +136,70 @@ public class MainActivity extends ActionBarActivity {
         recentText.layout(0, 0, recentText.getMeasuredWidth(), recentText.getMeasuredHeight());
         recentText.buildDrawingCache();
         iconRecent = new BitmapDrawable(getResources(), recentText.getDrawingCache());
+
+        // Customize icon
+        TextView customizeText = new TextView(this);
+        customizeText.setTypeface(font);
+        customizeText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        customizeText.setText("\uF0AD");
+        customizeText.setDrawingCacheEnabled(true);
+        customizeText.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        customizeText.layout(0, 0, customizeText.getMeasuredWidth(), customizeText.getMeasuredHeight());
+        customizeText.buildDrawingCache();
+        iconCustomize = new BitmapDrawable(getResources(), customizeText.getDrawingCache());
+
+        // Link icon
+        TextView linkIcon = new TextView(this);
+        linkIcon.setTypeface(font);
+        linkIcon.setTextColor(getResources().getColor(R.color.abc_secondary_text_material_dark));
+        linkIcon.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        linkIcon.setText("\uF0C1");
+        linkIcon.setDrawingCacheEnabled(true);
+        linkIcon.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        linkIcon.layout(0, 0, linkIcon.getMeasuredWidth(), linkIcon.getMeasuredHeight());
+        linkIcon.buildDrawingCache();
+        iconLink = new BitmapDrawable(getResources(), linkIcon.getDrawingCache());
+
+        // User icon
+        TextView userIcon = new TextView(this);
+        userIcon.setTypeface(font);
+        userIcon.setTextColor(getResources().getColor(R.color.abc_secondary_text_material_dark));
+        userIcon.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        userIcon.setText("\uF007");
+        userIcon.setDrawingCacheEnabled(true);
+        userIcon.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        userIcon.layout(0, 0, userIcon.getMeasuredWidth(), userIcon.getMeasuredHeight());
+        userIcon.buildDrawingCache();
+        iconUser = new BitmapDrawable(getResources(), userIcon.getDrawingCache());
+
+        // Colour icon
+        TextView colorIcon = new TextView(this);
+        colorIcon.setTypeface(font);
+        colorIcon.setTextColor(getResources().getColor(R.color.abc_secondary_text_material_dark));
+        colorIcon.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        colorIcon.setText("\uF1FC");
+        colorIcon.setDrawingCacheEnabled(true);
+        colorIcon.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        colorIcon.layout(0, 0, colorIcon.getMeasuredWidth(), colorIcon.getMeasuredHeight());
+        colorIcon.buildDrawingCache();
+        iconColour = new BitmapDrawable(getResources(), colorIcon.getDrawingCache());
+
+        // Size icon
+        TextView sizeIcon = new TextView(this);
+        sizeIcon.setTypeface(font);
+        sizeIcon.setTextColor(getResources().getColor(R.color.abc_secondary_text_material_dark));
+        sizeIcon.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        sizeIcon.setText("\uF0B2");
+        sizeIcon.setDrawingCacheEnabled(true);
+        sizeIcon.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        sizeIcon.layout(0, 0, sizeIcon.getMeasuredWidth(), sizeIcon.getMeasuredHeight());
+        sizeIcon.buildDrawingCache();
+        iconSize = new BitmapDrawable(getResources(), sizeIcon.getDrawingCache());
     }
 
 
@@ -125,29 +211,31 @@ public class MainActivity extends ActionBarActivity {
         // Add "recent QR codes" item
         menu.getItem(0).setIcon(iconRecent);
         
-        // TODO Do proper submenus
         SubMenu submenu = menu.getItem(0).getSubMenu();
         submenu.clear();
 
         // For testing!!
         SharedPreferences prefs = getSharedPreferences(RECENT_PREFS, Context.MODE_PRIVATE);
+        String data = prefs.getString("data", null);
         int cnt = prefs.getInt("count", 0);
         int reachedMax = prefs.getInt("max", 0);
 
         if (reachedMax == 1){
             cnt = 4;
         }
-
-        for (int i=0; i<=cnt; i++) {
-            names[i] = prefs.getString("name" + i, null);
-            phones[i] = prefs.getString("phone" + i, null);
-            emails[i] = prefs.getString("email" + i, null);
-            custom[i] = prefs.getString("custom" + i, null);
-            if (custom[i].isEmpty()) {
-                submenu.add(0, i, Menu.NONE, names[i]).setIcon(logoSmall);
-            }
-            else {
-                submenu.add(0, i, Menu.NONE, custom[i]).setIcon(logoSmall);
+        
+        if (data != null){
+            for (int i=0; i<=cnt; i++) {
+                names[i] = prefs.getString("name" + i, null);
+                phones[i] = prefs.getString("phone" + i, null);
+                emails[i] = prefs.getString("email" + i, null);
+                custom[i] = prefs.getString("custom" + i, null);
+                if (custom[i].isEmpty()) {
+                    submenu.add(0, i, Menu.NONE, names[i]).setIcon(iconUser);
+                }
+                else {
+                    submenu.add(0, i, Menu.NONE, custom[i]).setIcon(iconLink);
+                }
             }
         }
         return true;
@@ -183,17 +271,30 @@ public class MainActivity extends ActionBarActivity {
     }
     
     public void populateText(int id){
+        EditText name = (EditText) findViewById(R.id.nameText);
+        EditText phone = (EditText) findViewById(R.id.phoneText);
+        EditText email = (EditText) findViewById(R.id.emailText);
+        EditText cstm = (EditText) findViewById(R.id.customText);
         if (custom[id].isEmpty()){
-            EditText name = (EditText) findViewById(R.id.nameText);
+            cstm.setText("");
+            name.setText("");
             name.setText(names[id]);
-            EditText phone = (EditText) findViewById(R.id.phoneText);
+            phone.setText("");
             phone.setText(phones[id]);
-            EditText email = (EditText) findViewById(R.id.emailText);
+            email.setText("");
             email.setText(emails[id]);
         }
         else {
-            EditText cstm = (EditText) findViewById(R.id.customText);
+            cstm.setText("");
+            name.setText("");
+            phone.setText("");
+            email.setText("");
             cstm.setText(custom[id]);
         }
+    }
+    
+    @Override
+    protected void onResume(){
+        super.onResume();
     }
 }

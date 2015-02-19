@@ -5,11 +5,11 @@
         android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" /> -->
     <item
-        android:id="@+id/recent"
+        android:id="@+id/customizeQR"
         android:title="Recent"
         app:showAsAction="ifRoom">
         <menu>
-            <item android:id="@+id/item1" android:title="Placeholder"></item>
+            <item android:id="@+id/colorsQR" android:title="Placeholder"></item>
         </menu>
     </item>
 </menu>
