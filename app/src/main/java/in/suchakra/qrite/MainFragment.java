@@ -91,17 +91,26 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                 size = ((EditText) getActivity().findViewById(R.id.sizeText)).getText().toString();
 
                 // Null check for data
-                if ( ((name.isEmpty()) &&
-                        (phone.isEmpty()) &&
-                        (email.isEmpty()) &&
-                        (custom.isEmpty()) ))
-                {
-                    Toast.makeText(getActivity().getApplicationContext(), "Input some data to generate QR code!",
+
+                if ((name.isEmpty() && !phone.isEmpty()) || (name.isEmpty() && !email.isEmpty())){
+
+
+                        Toast.makeText(getActivity().getApplicationContext(), "Name is required to generate QR Code!",
+                                Toast.LENGTH_LONG).show();
+                        vPager.setCurrentItem(0); // return to INFO tab
+                        break;
+                }
+                    else if(name.isEmpty() && phone.isEmpty() && custom.isEmpty() && email.isEmpty())
+                 {
+
+                    Toast.makeText(getActivity().getApplicationContext(), "All fields empty, please input something to generate QR Code!",
                             Toast.LENGTH_LONG).show();
                     vPager.setCurrentItem(0); // return to INFO tab
                     break;
+
                 }
-                
+
+
                 if (!size.isEmpty() && Integer.parseInt(size) > 1024){
                     Toast.makeText(getActivity().getApplicationContext(), "Make it smaller than 1024px",
                             Toast.LENGTH_LONG).show();
