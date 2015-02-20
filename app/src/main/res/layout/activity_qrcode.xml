@@ -56,10 +56,13 @@
                 android:id="@+id/smartwatchButton"
                 android:layout_below="@+id/saveButton"
                 android:gravity="center"
-                android:layout_alignLeft="@+id/saveButton"
-                android:layout_alignStart="@+id/saveButton"
+                android:background="@drawable/button_material"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_alignRight="@+id/saveButton"
-                android:layout_alignEnd="@+id/saveButton" />
+                android:layout_alignEnd="@+id/saveButton"
+                android:layout_alignLeft="@+id/saveButton"
+                android:layout_alignStart="@+id/saveButton" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -71,7 +74,9 @@
                 android:layout_alignLeft="@+id/card3"
                 android:layout_alignStart="@+id/card3"
                 android:layout_alignRight="@+id/card3"
-                android:layout_alignEnd="@+id/card3" />
+                android:layout_alignEnd="@+id/card3"
+                android:background="@drawable/button_material"
+                android:layout_margin="5dp" />
             
         </RelativeLayout>
     </ScrollView>
