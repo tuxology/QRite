@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.Arrays;
 
 import tablayout.SlidingTabLayout;
 
@@ -29,7 +32,8 @@ public class MainActivity extends ActionBarActivity {
     public static BitmapDrawable iconCustomize;
     public static BitmapDrawable iconColour;
     public static BitmapDrawable iconSize;
-
+    public static BitmapDrawable iconClear;
+    
     public static final String RECENT_PREFS = "RecentPrefsFile";
     String [] names = new String[5];
     String [] phones = new String[5];
@@ -74,27 +78,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
         slidingTabLayout.setViewPager(viewPager);
-
-        EditText mName = (EditText) findViewById(R.id.nameText);
-        EditText mPhone = (EditText) findViewById(R.id.phoneText);
-        EditText mEmail = (EditText) findViewById(R.id.emailText);
-        EditText mCstm = (EditText) findViewById(R.id.customText);
-//        if (sCustom == null){
-//            mCstm.setText("");
-//            mName.setText("");
-//            mName.setText(sName);
-//            mPhone.setText("");
-//            mPhone.setText(sPhone);
-//            mEmail.setText("");
-//            mEmail.setText(sEmail);
-//        }
-//        else {
-//            mCstm.setText("");
-//            mName.setText("");
-//            mPhone.setText("");
-//            mEmail.setText("");
-//            mCstm.setText(sCustom);
-//        }
     }
     
     public void initializeDrawables(){
@@ -137,6 +120,18 @@ public class MainActivity extends ActionBarActivity {
         recentText.buildDrawingCache();
         iconRecent = new BitmapDrawable(getResources(), recentText.getDrawingCache());
 
+        // Clear form icon
+        TextView clearIcon = new TextView(this);
+        clearIcon.setTypeface(font);
+        clearIcon.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        clearIcon.setText("\uF056");
+        clearIcon.setDrawingCacheEnabled(true);
+        clearIcon.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        clearIcon.layout(0, 0, clearIcon.getMeasuredWidth(), clearIcon.getMeasuredHeight());
+        clearIcon.buildDrawingCache();
+        iconClear = new BitmapDrawable(getResources(), clearIcon.getDrawingCache());
+        
         // Customize icon
         TextView customizeText = new TextView(this);
         customizeText.setTypeface(font);
@@ -200,6 +195,7 @@ public class MainActivity extends ActionBarActivity {
         sizeIcon.layout(0, 0, sizeIcon.getMeasuredWidth(), sizeIcon.getMeasuredHeight());
         sizeIcon.buildDrawingCache();
         iconSize = new BitmapDrawable(getResources(), sizeIcon.getDrawingCache());
+
     }
 
 
@@ -208,13 +204,13 @@ public class MainActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         
-        // Add "recent QR codes" item
-        menu.getItem(0).setIcon(iconRecent);
-        
-        SubMenu submenu = menu.getItem(0).getSubMenu();
+        // Add items to toolbar
+        menu.getItem(0).setIcon(iconClear);
+        menu.getItem(1).setIcon(iconRecent);
+
+        SubMenu submenu = menu.getItem(1).getSubMenu();
         submenu.clear();
 
-        // For testing!!
         SharedPreferences prefs = getSharedPreferences(RECENT_PREFS, Context.MODE_PRIVATE);
         String data = prefs.getString("data", null);
         int cnt = prefs.getInt("count", 0);
@@ -223,7 +219,7 @@ public class MainActivity extends ActionBarActivity {
         if (reachedMax == 1){
             cnt = 4;
         }
-        
+
         if (data != null){
             for (int i=0; i<=cnt; i++) {
                 names[i] = prefs.getString("name" + i, null);

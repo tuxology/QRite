@@ -39,6 +39,7 @@ import java.nio.CharBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Random;
@@ -50,7 +51,7 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
     String [] names = new String[5];
     String [] phones = new String[5];
     String [] emails = new String[5];
-    String [] custom = new String[5];
+    String [] customs = new String[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,29 +111,53 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
         smartwatchButton.setText("\uF017"+"  Send to Smartwatch");
         smartwatchButton.setOnClickListener(this);
 
-        // Save the value for recent data
+        // Save the recent data as "preferences"
         SharedPreferences prefs = getSharedPreferences(RECENT_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
+        
         int cnt = prefs.getInt("count", 42);
         if (cnt == 42){ // first run
-            cnt = 0;
+            cnt = -1;
         }
-        else if (cnt < 4){ // 4 is max people on list
-            cnt+=1;
-        }
-        else if (cnt >= 4){ //reset count when max people on list reached
-            cnt = 0;
-        }
+
         if (cnt == 4){
             editor.putInt("max", 1);
         }
+        if (cnt < 4){
+            cnt+=1;
+        }
+
+        // read all preferences values and store them in an array
+        for (int i=0; i<=cnt; i++) {
+            names[i] = prefs.getString("name" + i, null);
+            phones[i] = prefs.getString("phone" + i, null);
+            emails[i] = prefs.getString("email" + i, null);
+            customs[i] = prefs.getString("custom" + i, null);
+        }
+
+        // shift arrays right by 1
+        System.arraycopy(names, 0, names, 1, names.length-1);
+        System.arraycopy(phones, 0, phones, 1, phones.length-1);
+        System.arraycopy(emails, 0, emails, 1, emails.length-1);
+        System.arraycopy(customs, 0, customs, 1, customs.length-1);
+
+
+        // write all preferences values back from the array
+        for (int i=0; i<=cnt; i++) {
+            editor.putString("name"+i, names[i]);
+            editor.putString("phone"+i, phones[i]);
+            editor.putString("email"+i, emails[i]);
+            editor.putString("custom"+i, customs[i]);
+        }
+
+        // write the latest preference values
         editor.putInt("count", cnt);
         editor.putString("data", "is written");
-        editor.putString("name"+cnt, name);
-        editor.putString("phone"+cnt, phone);
-        editor.putString("email"+cnt, email);
-        editor.putString("custom"+cnt, custom);
-        editor.putString("size"+cnt, size);
+        editor.putString("name0", name);
+        editor.putString("phone0", phone);
+        editor.putString("email0", email);
+        editor.putString("custom0", custom);
+        editor.putString("size0", size);
         editor.commit();
     }
     
