@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,8 +16,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.Arrays;
 
 import tablayout.SlidingTabLayout;
 
@@ -35,11 +32,14 @@ public class MainActivity extends ActionBarActivity {
     public static BitmapDrawable iconClear;
     
     public static final String RECENT_PREFS = "RecentPrefsFile";
+    
+    // Arrays to keep recent list items
+    // Maybe in some distant future, use elegant ways
     String [] names = new String[5];
     String [] phones = new String[5];
     String [] emails = new String[5];
     String [] custom = new String[5];
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -236,8 +236,6 @@ public class MainActivity extends ActionBarActivity {
         }
         return true;
     }
-    
-    
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -261,6 +259,19 @@ public class MainActivity extends ActionBarActivity {
                 return true;
             case 4:
                 populateText(id);
+                return true;
+            
+            case R.id.clear:
+                EditText name = (EditText) findViewById(R.id.nameText);
+                EditText phone = (EditText) findViewById(R.id.phoneText);
+                EditText email = (EditText) findViewById(R.id.emailText);
+                EditText cstm = (EditText) findViewById(R.id.customText);
+                EditText size = (EditText) findViewById(R.id.sizeText);
+                name.setText("");
+                phone.setText("");
+                email.setText("");
+                cstm.setText("");
+                size.setText("");
                 return true;
         }
         return super.onOptionsItemSelected(item);

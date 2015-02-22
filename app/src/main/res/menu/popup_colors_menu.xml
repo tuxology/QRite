@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/blackCol"
+        android:title="Black"/>
+    <item
+        android:id="@+id/brownCol"
+        android:title="Brown"/>
+    <item
+        android:id="@+id/maroonCol"
+        android:title="Maroon"/>
+    <item
+        android:id="@+id/navyblueCol"
+        android:title="Navy Blue"/>
+    <item
+        android:id="@+id/greenCol"
+        android:title="Green"/>
+    <item
+        android:id="@+id/orangeCol"
+        android:title="Orange"/>
+    <item
+        android:id="@+id/pinkCol"
+        android:title="Pink"/>
+</menu>

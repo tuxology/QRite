@@ -6,10 +6,28 @@
         android:orderInCategory="100" app:showAsAction="never" /> -->
     <item
         android:id="@+id/customizeQR"
-        android:title="Recent"
+        android:title="Customize"
         app:showAsAction="ifRoom">
         <menu>
-            <item android:id="@+id/colorsQR" android:title="Placeholder"></item>
+            <item android:id="@+id/colorsQR" android:title="Color">
+                <menu>
+                    <item android:id="@+id/blackQR" android:title="Black"></item>
+                    <item android:id="@+id/brownQR" android:title="Brown"></item>
+                    <item android:id="@+id/maroonQR" android:title="Maroon"></item>
+                    <item android:id="@+id/navyblueQR" android:title="Navy Blue"></item>
+                    <item android:id="@+id/greenQR" android:title="Green"></item>
+                    <item android:id="@+id/orangeQR" android:title="Orange"></item>
+                    <item android:id="@+id/pinkQR" android:title="Pink"></item>
+                </menu>
+            </item>
+            <item android:id="@+id/sizeQR" android:title="Size">
+                <menu>
+                    <item android:id="@+id/preset128" android:title="128px"></item>
+                    <item android:id="@+id/preset240" android:title="240px"></item>
+                    <item android:id="@+id/preset512" android:title="512px"></item>
+                    <item android:id="@+id/preset1024" android:title="1024px"></item>
+                </menu>
+            </item>
         </menu>
     </item>
 </menu>

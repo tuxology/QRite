@@ -47,6 +47,13 @@ import java.util.Random;
 
 public class QrCodeActivity extends ActionBarActivity implements View.OnClickListener {
     
+    private String qrtext;
+    private int qrcolor;
+
+    // Defaults
+    private int width = 240;
+    private int height = 240;
+    
     public static final String RECENT_PREFS = "RecentPrefsFile";
     String [] names = new String[5];
     String [] phones = new String[5];
@@ -70,29 +77,32 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
         toolbar.setTitleTextAppearance(getApplicationContext(), Typeface.BOLD);
         toolbar.setBackgroundColor(getResources().getColor(R.color.accent_material_light));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // This is where QR code will be displayed
-        ImageView qrcode = (ImageView) findViewById(R.id.qrcodeImageView);
         
         String name = getIntent().getStringExtra("name");
         String phone = getIntent().getStringExtra("phone");
         String email = getIntent().getStringExtra("email");
         String custom = getIntent().getStringExtra("custom");
         String size = getIntent().getStringExtra("size");
+        int colour = getIntent().getExtras().getInt("colour", getResources().getColor(R.color.black));
+        qrcolor = colour;
+        
+        // Default colour
+        if (colour == 0){
+            colour = getResources().getColor(R.color.black);
+        }
 
+        // This is where QR code will be displayed
+        ImageView qrcode = (ImageView) findViewById(R.id.qrcodeImageView);
+        
         // Raw string to encode
-        String qrtext = prepareQRString(name, phone, email, custom);
-
-        // Defaults
-        int width = 240;
-        int height = 240;
+        qrtext = prepareQRString(name, phone, email, custom);
 
         try{
             if (!size.equals("")) {
                 width = Integer.parseInt(size);
                 height = Integer.parseInt(size);
             }
-            generateQRCode(qrtext, qrcode, width, height);
+            generateQRCode(qrtext, qrcode, width, height, colour);
         }
         catch (WriterException e){
             e.printStackTrace();
@@ -228,7 +238,7 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
         return qrsb.toString();
     }
 
-    private void generateQRCode(String data, ImageView img, int width, int height)throws WriterException {
+    private void generateQRCode(String data, ImageView img, int width, int height, int colour)throws WriterException {
         Charset charset = Charset.forName("ISO-8859-1");
         CharsetEncoder encoder = charset.newEncoder();
         byte[] b = null;
@@ -250,7 +260,7 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                ImageBitmap.setPixel(i, j, bm.get(i, j) ? Color.BLACK: Color.WHITE);
+                ImageBitmap.setPixel(i, j, bm.get(i, j) ? colour: Color.WHITE);
             }
         }
 
@@ -266,28 +276,140 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_qrcode, menu);
+        
         // Add "recent QR codes" item
         menu.getItem(0).setIcon(MainActivity.iconCustomize);
-        
         SubMenu submenu = menu.getItem(0).getSubMenu();
-        submenu.clear();
-        submenu.add(0, 1, Menu.NONE, "Colors").setIcon(MainActivity.iconColour);
-        submenu.add(0, 2, Menu.NONE, "Size").setIcon(MainActivity.iconSize);
+        submenu.getItem(0).setIcon(MainActivity.iconColour);
+        submenu.getItem(1).setIcon(MainActivity.iconSize);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        
+        ImageView qrcode = (ImageView) findViewById(R.id.qrcodeImageView);
+        
+        switch (id){
+            case R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            
+            case R.id.blackQR:
+                qrcolor = getResources().getColor(R.color.black);
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }   
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
+            
+            case R.id.brownQR:
+                qrcolor = getResources().getColor(R.color.brown);
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
+            
+            case R.id.maroonQR:
+                qrcolor = getResources().getColor(R.color.maroon);
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
 
-        if (id == R.id.home){
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
+            case R.id.navyblueQR:
+                qrcolor = getResources().getColor(R.color.navyblue);
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
+
+            case R.id.greenQR:
+                qrcolor = getResources().getColor(R.color.green);
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
+
+            case R.id.orangeQR:
+                qrcolor = getResources().getColor(R.color.orange);
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
+            case R.id.pinkQR:
+                qrcolor = getResources().getColor(R.color.pink);
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
+
+            case R.id.preset128:
+                width = 128;
+                height = 128;
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
+
+            case R.id.preset240:
+                width = 240;
+                height = 240;
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
+
+            case R.id.preset512:
+                width = 512;
+                height = 512;
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
+
+            case R.id.preset1024:
+                width = 1024;
+                height = 1024;
+                try {
+                    generateQRCode(qrtext, qrcode, width, height, qrcolor);
+                }
+                catch (WriterException e){
+                    e.printStackTrace();
+                }
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

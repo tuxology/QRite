@@ -6,7 +6,7 @@
         android:orderInCategory="100" app:showAsAction="never" /> -->
     <item
         android:id="@+id/clear"
-        android:title="Clear Form"
+        android:title="Clear Data"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/recent"

@@ -25,7 +25,7 @@
         android:id="@+id/heading2Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="\uF044"
+        android:text="\uF14B"
         android:textSize="50dip"
         android:layout_below="@+id/emailText"
         android:layout_alignLeft="@+id/emailText"
@@ -140,22 +140,31 @@
         android:id="@+id/relativeLayout"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
-        android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_below="@+id/customText"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/customText">
+        android:layout_marginBottom="20dp">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Next"
             android:id="@+id/nextButton"
+            android:background="@drawable/button_material"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan"
+            android:id="@+id/scanButton"
             android:background="@drawable/button_material"
-            android:layout_margin="5dp" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
