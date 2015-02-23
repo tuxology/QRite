@@ -53,3 +53,13 @@ an Android Wear device and a Pebble. If you happen to have one and don't need it
 I would be happy to accept it. Or, consider buying the paid version of this app to support
 development and help me buy one. You can also tip me on Gratipay
 <a href="https://gratipay.com/tuxology/"> <img src="http://img.shields.io/gratipay/tuxology.svg"> </a>
+
+License
+-------
+Code written by authors is released under LGPLv3. The app uses parts from Android such as 
+SlidingTabLayout and ZXing library released under Apache Licence v2.0
+
+Acknowledgements
+----------------
+Font Awesome by Dave Gandy - http://fontawesome.io for the icons used in this app.
+
