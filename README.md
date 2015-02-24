@@ -1,4 +1,6 @@
-Tip me on Gratipay: <a href="https://gratipay.com/tuxology/"> <img src="http://img.shields.io/gratipay/tuxology.svg"> </a>
+Tips/Donations : <a href="https://gratipay.com/tuxology/"> <img src="http://img.shields.io/gratipay/tuxology.svg"> </a>
+[![PayPayl donate button](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B54PAVSL2JP44&lc=CA&item_name=QRite%20App&item_number=qrite&currency_code=CAD&bn=PP%2dDonationsBF%3apaypal%2ddonate%2dyellow%2esvg%3aNonHosted
+ "Donate just once using Paypal")
 
 QRite
 =====
@@ -47,12 +49,15 @@ TODOs
 
 Contributing
 ------------
-Patches, pull-requests for bugfixes, new features or code contributions to refactor my naïve 
+Two ways - code or money. Patches, pull-requests for bugfixes, new features or code contributions to refactor my naïve 
 Java coding attempt are very welcome :) To implement the smartwatch feature, I also need 
 an Android Wear device and a Pebble. If you happen to have one and don't need it anymore, 
 I would be happy to accept it. Or, consider buying the paid version of this app to support
-development and help me buy one. You can also tip me on Gratipay
-<a href="https://gratipay.com/tuxology/"> <img src="http://img.shields.io/gratipay/tuxology.svg"> </a>
+development and help me buy one. Or, pay me directly. Or, ask someone to pay me.
+
+Tips/Donations : <a href="https://gratipay.com/tuxology/"> <img src="http://img.shields.io/gratipay/tuxology.svg"> </a>
+[![PayPayl donate button](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B54PAVSL2JP44&lc=CA&item_name=QRite%20App&item_number=qrite&currency_code=CAD&bn=PP%2dDonationsBF%3apaypal%2ddonate%2dyellow%2esvg%3aNonHosted
+ "Donate just once using Paypal")
 
 License
 -------
@@ -62,5 +67,9 @@ SlidingTabLayout and ZXing library released under Apache Licence v2.0
 Acknowledgements
 ----------------
 Font Awesome by Dave Gandy - http://fontawesome.io for the icons used in this app.
+
+Authors
+-------
+Suchakra Sharma
 Tanushri Chakravorty
 
