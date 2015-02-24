@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +30,16 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     public static final String ARG_PAGE = "ARG_PAGE";
     private int mPage;
     private int qrColor;
+    private int presetSize = 0;
 
+    public void setPresetSize(int size){
+        presetSize = size;
+    }
+
+    public void setQrColor(int col){
+        qrColor = col;
+    }
+    
     public static MainFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
@@ -82,6 +92,19 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             changeColorButton.setTypeface(font);
             changeColorButton.setText("\uF1FC"+"  Change");
             changeColorButton.setOnClickListener(this);
+            
+            TextView card1Text = (TextView) config_view.findViewById(R.id.card1Text);
+            TextView card2Text = (TextView) config_view.findViewById(R.id.card2Text);
+            TextView card3Text = (TextView) config_view.findViewById(R.id.card3Text);
+
+            card1Text.setOnClickListener(this);
+            card2Text.setOnClickListener(this);
+            card3Text.setOnClickListener(this);
+            
+            // Disable text selection
+            card1Text.setFocusableInTouchMode(false);
+            card2Text.setFocusableInTouchMode(false);
+            card3Text.setFocusableInTouchMode(false);
 
             return config_view;
         }
@@ -91,12 +114,34 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         ViewPager vPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+        CardView card1 = (CardView) getActivity().findViewById(R.id.card1);
+        CardView card2 = (CardView) getActivity().findViewById(R.id.card2);
+        CardView card3 = (CardView) getActivity().findViewById(R.id.card3);
+
         switch(v.getId()){
             case R.id.nextButton:
                 vPager.setCurrentItem(2); // go to CONFIG tab
                 break;
             case R.id.backButton:
                 vPager.setCurrentItem(0); // return to INFO tab
+                break;
+            case R.id.card1Text:
+                card1.setCardBackgroundColor(getResources().getColor(R.color.accent_material_light));
+                card2.setCardBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
+                card3.setCardBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
+                presetSize = 128;
+                break;
+            case R.id.card2Text:
+                card1.setCardBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
+                card2.setCardBackgroundColor(getResources().getColor(R.color.accent_material_light));
+                card3.setCardBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
+                presetSize = 240;
+                break;
+            case R.id.card3Text:
+                card1.setCardBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
+                card2.setCardBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
+                card3.setCardBackgroundColor(getResources().getColor(R.color.accent_material_light)); 
+                presetSize = 512;
                 break;
             case R.id.changeButton:
                 Button changeButton = (Button) getActivity().findViewById(R.id.changeButton);
@@ -115,6 +160,13 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                 email = ((EditText) getActivity().findViewById(R.id.emailText)).getText().toString();
                 custom = ((EditText) getActivity().findViewById(R.id.customText)).getText().toString();
                 size = ((EditText) getActivity().findViewById(R.id.sizeText)).getText().toString();
+
+                // Text size has precedence over presets
+                if (size.isEmpty()){
+                    size = String.valueOf(presetSize);
+                }
+                
+                Log.v("SIZE", size);
 
                 // Null check for data
                 if ((name.isEmpty() && !phone.isEmpty()) || (name.isEmpty() && !email.isEmpty())){

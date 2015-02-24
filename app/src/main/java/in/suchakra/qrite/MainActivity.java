@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -262,6 +263,7 @@ public class MainActivity extends ActionBarActivity {
                 return true;
             
             case R.id.clear:
+                // Clear and reset everything to defaults
                 EditText name = (EditText) findViewById(R.id.nameText);
                 EditText phone = (EditText) findViewById(R.id.phoneText);
                 EditText email = (EditText) findViewById(R.id.emailText);
@@ -272,6 +274,17 @@ public class MainActivity extends ActionBarActivity {
                 email.setText("");
                 cstm.setText("");
                 size.setText("");
+                CardView card1 = (CardView) findViewById(R.id.card1);
+                CardView card2 = (CardView) findViewById(R.id.card2);
+                CardView card3 = (CardView) findViewById(R.id.card3);
+                card1.setCardBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
+                card2.setCardBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
+                card3.setCardBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
+                MainFragment frag = (MainFragment) getSupportFragmentManager().getFragments().get(1);
+                frag.setPresetSize(240);
+                frag.setQrColor(getResources().getColor(R.color.black));
+                CardView colorBox = (CardView) findViewById(R.id.colorBox);
+                colorBox.setCardBackgroundColor(getResources().getColor(R.color.black));
                 return true;
         }
         return super.onOptionsItemSelected(item);

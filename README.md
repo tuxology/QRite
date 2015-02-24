@@ -37,11 +37,11 @@ to access these recent items.
 
 *Customization* : You can choose from some presets or specify a custom size (less than 1024px) for 
 the QR code. You can also choose the colors from some available presets. This customization can also 
-be done once the QR code is generated using the Qrench menu on the top right in the QR code screen.
+be done once the QR code is generated using the wrench menu on the top right in the QR code screen.
 
 TODOs
 -----
-* Get the size preset Card Views working
+* ~~Get the size preset Card Views working~~
 * Implement the scan and digitize feature
 * Add smartwatch support for Pebble, Android Wear, SmartQ Z
 
@@ -62,4 +62,5 @@ SlidingTabLayout and ZXing library released under Apache Licence v2.0
 Acknowledgements
 ----------------
 Font Awesome by Dave Gandy - http://fontawesome.io for the icons used in this app.
+Tanushri Chakravorty
 
