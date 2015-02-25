@@ -2,8 +2,8 @@ package in.suchakra.qrite;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -13,7 +13,6 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -39,7 +38,6 @@ import java.nio.CharBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Random;
@@ -51,8 +49,8 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
     private int qrcolor;
 
     // Defaults
-    private int width = 240;
-    private int height = 240;
+    private int width = 512;
+    private int height = 512;
     
     public static final String RECENT_PREFS = "RecentPrefsFile";
     String [] names = new String[5];
@@ -69,6 +67,8 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Do not show the keyboard by default
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -115,12 +115,14 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
         saveButton.setTypeface(font);
         saveButton.setText("\uF019"+"  Save to Gallery");
         saveButton.setOnClickListener(this);
-
+        
+        /*
         Button smartwatchButton = (Button) findViewById(R.id.smartwatchButton);
         smartwatchButton.setTypeface(font);
         smartwatchButton.setText("\uF017"+"  Send to Smartwatch");
         smartwatchButton.setOnClickListener(this);
-
+        */
+        
         // Save the recent data as "preferences"
         SharedPreferences prefs = getSharedPreferences(RECENT_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -215,8 +217,10 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
                 }
                                 
                 break;
+            /*
             case R.id.smartwatchButton:
                 break;
+            */
         }
     }
     
@@ -234,7 +238,6 @@ public class QrCodeActivity extends ActionBarActivity implements View.OnClickLis
         qrsb.append("TEL;CELL:").append(phone).append(System.getProperty("line.separator"));
         qrsb.append("EMAIL;INTERNET:").append(email).append(System.getProperty("line.separator"));
         qrsb.append("END:VCARD").append(System.getProperty("line.separator"));
-        Log.v("Data", qrsb.toString());
         return qrsb.toString();
     }
 

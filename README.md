@@ -46,6 +46,9 @@ TODOs
 * ~~Get the size preset Card Views working~~
 * Implement the scan and digitize feature
 * Add smartwatch support for Pebble, Android Wear, SmartQ Z
+* Code Refactoring
+    - Separate threads for heavy duty stuff
+    - Better management of generated drawables
 
 Contributing
 ------------
@@ -70,6 +73,6 @@ Font Awesome by Dave Gandy - http://fontawesome.io for the icons used in this ap
 
 Authors
 -------
-Suchakra Sharma
+Suchakra Sharma  
 Tanushri Chakravorty
 

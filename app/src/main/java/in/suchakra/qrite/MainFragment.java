@@ -11,26 +11,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * Created by Tanushri on 08-Feb-15.
- */
 public class MainFragment extends Fragment implements View.OnClickListener{
     public static final String ARG_PAGE = "ARG_PAGE";
     private int mPage;
     private int qrColor;
-    private int presetSize = 0;
+    private int presetSize = 512;
 
     public void setPresetSize(int size){
         presetSize = size;
@@ -69,10 +63,12 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             mNextbutton.setText("Next  "+"\uF0A9");            
             mNextbutton.setOnClickListener(this);
 
+            /*
             Button scanButton = (Button) info_view.findViewById( R.id.scanButton);
             scanButton.setTypeface(font);
             scanButton.setText("\uF030" + "  Scan" );
             scanButton.setOnClickListener(this);
+            */
             
             return info_view;
         }
@@ -165,8 +161,6 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                 if (size.isEmpty()){
                     size = String.valueOf(presetSize);
                 }
-                
-                Log.v("SIZE", size);
 
                 // Null check for data
                 if ((name.isEmpty() && !phone.isEmpty()) || (name.isEmpty() && !email.isEmpty())){

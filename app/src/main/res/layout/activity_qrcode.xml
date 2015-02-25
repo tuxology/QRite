@@ -49,6 +49,7 @@
                     android:src="@drawable/toolbar_icon" />
                 
                 </android.support.v7.widget.CardView>
+            <!--
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,7 +64,7 @@
                 android:layout_alignEnd="@+id/saveButton"
                 android:layout_alignLeft="@+id/saveButton"
                 android:layout_alignStart="@+id/saveButton" />
-
+            -->
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
